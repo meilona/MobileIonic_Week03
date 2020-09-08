@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Contacts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let contact of contacts" [routerLink]="['./', contact.id]">
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-img [src]="contact.imageUrl"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        {{ contact.name }}
+      </ion-label>
+      <ion-label slot="end">
+        <ion-icon name="mail-outline"></ion-icon>
+          {{ contact.email.length }}
+        <ion-icon name="call-outline"></ion-icon>
+          {{ contact.phoneNumber.length }}
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>
