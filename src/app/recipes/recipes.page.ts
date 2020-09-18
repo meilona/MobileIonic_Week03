@@ -9,10 +9,10 @@ import {ToastController} from '@ionic/angular';
   styleUrls: ['./recipes.page.scss'],
 })
 export class RecipesPage implements OnInit {
-  recipes: Recipe[];
+  // recipes: Recipe[];
 
   constructor(
-      private recipesService: RecipesService
+      // private recipesService: RecipesService
   ) { }
 
   // ini cuman dijalanin sekali, initialization
@@ -22,6 +22,6 @@ export class RecipesPage implements OnInit {
 
   // ini solusinya
   ionViewWillEnter(){
-    this.recipes = this.recipesService.getAllRecipes();
+    // this.recipes = this.recipesService.getAllRecipes();
   }
 }

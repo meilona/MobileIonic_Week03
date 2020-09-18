@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RecipesPage } from './recipes.page';
+import { PlacesPage } from './places.page';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/recipes/tabs/discover',
+    redirectTo: '/places/tabs/discover',
     pathMatch: 'full'
   },
   {
     path: 'tabs',
-    component: RecipesPage,
+    component: PlacesPage,
     children: [
       {
         path: 'discover',
         loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule)
       },
       {
-        path: 'creations',
-        loadChildren: () => import('./creation/creation.module').then( m => m.CreationPageModule)
+        path: 'offers',
+        loadChildren: () => import('./offers/offers.module').then( m => m.OffersPageModule)
       }
     ]
   }
@@ -29,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class RecipesPageRoutingModule {}
+export class PlacesPageRoutingModule {}
