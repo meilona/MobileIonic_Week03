@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DiscoverService} from './discover.service';
 import {Recipe} from '../recipe.model';
+import {RecipesService} from '../recipes.service';
+import {IonItemSliding} from '@ionic/angular';
 
 @Component({
   selector: 'app-discover',
@@ -9,9 +11,10 @@ import {Recipe} from '../recipe.model';
 })
 export class DiscoverPage implements OnInit {
   recipes: Recipe[];
+  data2 = 'hehe';
 
   constructor(
-      private discoverService: DiscoverService
+      private recipesService: RecipesService
   ) { }
 
   // ini cuman dijalanin sekali, initialization
@@ -20,6 +23,20 @@ export class DiscoverPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.recipes = this.discoverService.getAllRecipes();
+    this.recipes = this.recipesService.getAllRecipes();
+  }
+
+  onFilterUpdate(event: CustomEvent) {
+    console.log(event.detail);
+  }
+
+  fav(recipe: Recipe, slidingItem: IonItemSliding) {
+    slidingItem.close();
+    console.log(recipe.title, 'added to favorite');
+  }
+
+  share(recipe: Recipe, slidingItem: IonItemSliding) {
+    slidingItem.close();
+    console.log('Share', recipe.title, 'to social media');
   }
 }

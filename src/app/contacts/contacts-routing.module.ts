@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ContactsPage } from './contacts.page';
+import {Week06Component} from './components/week06/week06.component';
+import {IonicModule} from '@ionic/angular';
 
 const routes: Routes = [
   {
@@ -15,7 +17,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes), IonicModule],
+    exports: [RouterModule, Week06Component],
+    declarations: [
+        Week06Component
+    ]
 })
 export class ContactsPageRoutingModule {}

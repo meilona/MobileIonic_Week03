@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Lobster';
+  src: url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+}
+
+ion-label {
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+}
+
+ion-item {
+  --ion-background-color: #f3f3f3;
+  --ion-border-color: #f3f3f3;
+}
+
+ion-item {
+  &:hover {
+    --background-hover: #ff0000;
+  }
+}
+
+ion-icon {
+  color: #f8617b;
+  padding-right: 10px;
+}
