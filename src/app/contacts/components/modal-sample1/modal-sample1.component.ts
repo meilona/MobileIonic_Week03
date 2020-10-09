@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Contact} from '../../contact.model';
 import {LoadingController, ModalController, ToastController} from '@ionic/angular';
+import {FormBuilder, FormGroup, NgForm} from '@angular/forms';
+import {ContactsService} from '../../contacts.service';
+import {Contact} from '../../contact.model';
 
 @Component({
   selector: 'app-modal-sample1',
@@ -9,10 +11,13 @@ import {LoadingController, ModalController, ToastController} from '@ionic/angula
 })
 export class ModalSample1Component implements OnInit {
   @Input() selectedContact: Contact;
+  // private contact: Contact = {id: '', name: '', imageUrl: '', email: [], phoneNumber: []};
+
   constructor(
       private modalCtrl: ModalController,
       private loadingCtrl: LoadingController,
-      private toastController: ToastController
+      private toastController: ToastController,
+      private contactsService: ContactsService
   ) { }
 
   ngOnInit() {}
@@ -27,7 +32,6 @@ export class ModalSample1Component implements OnInit {
       color: 'success',
       duration: 2000
     });
-
     await toast.present();
   }
 
@@ -42,9 +46,25 @@ export class ModalSample1Component implements OnInit {
     console.log('Loading dismissed');
   }
 
-  onAdd(){
+  onSubmit(form: NgForm) {
+    console.log('onSubmit');
+    console.log(form);
+    const email = form.value.email;
+    const pNumber = form.value.phoneNumber;
+
+    if (!form.valid) {
+      return;
+    }
     this.presentLoading().then(() => {
-      this.modalCtrl.dismiss({message: 'New contact added'}, 'confirm');
+      const newContact: Contact = {
+        id: 'c',
+        name: form.value.name,
+        imageUrl: form.value.imageUrl,
+        phoneNumber: pNumber.split(','),
+        email: email.split(',')
+      };
+      this.contactsService.addContact(newContact);
+      this.modalCtrl.dismiss( 'success', 'confirm');
       this.presentToast();
     });
   }

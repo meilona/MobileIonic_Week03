@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Contact} from './contact.model';
+import {strict} from 'assert';
+import {NgForm} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
+
   private contacts: Contact[] = [
     {
       id: 'c1',
@@ -22,6 +25,25 @@ export class ContactsService {
     }
   ];
   constructor() { }
+
+  addContact(contact: Contact){
+    const idSize: number = this.contacts.length + 1;
+
+    const newItem: Contact = {
+      id: contact.id + idSize,
+      name: contact.name,
+      imageUrl: contact.imageUrl,
+      phoneNumber: contact.phoneNumber,
+      email: contact.email
+    };
+    this.contacts.push(newItem);
+    console.log(newItem);
+  }
+
+  editContact(contact: any, selectedIndex: any){
+    this.contacts[selectedIndex] = contact;
+    console.log(contact);
+  }
 
   getAllContacts(){
     return [...this.contacts];

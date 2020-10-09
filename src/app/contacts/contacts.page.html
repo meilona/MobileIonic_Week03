@@ -17,7 +17,7 @@
         </ion-segment>
 
         <ion-list>
-          <ion-item-sliding *ngFor="let contact of contacts" #slidingItem>
+          <ion-item-sliding *ngFor="let contact of contacts;let i = index" #slidingItem>
 <!--            <ion-item [routerLink]="['/', 'contacts', contact.id]">-->
 <!--              <ion-avatar slot="start">-->
 <!--                <ion-img [src]="contact.imageUrl"></ion-img>-->
@@ -28,7 +28,12 @@
 <!--            </ion-item>-->
               <app-week06 [contact]="contact"></app-week06>
 
-            <ion-item-options side="end">
+            <ion-item-options side="start">
+              <ion-item-option (click)="edit(i,contact,slidingItem)">
+                <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+              <ion-item-options side="end">
               <ion-item-option (click)="prior(contact,slidingItem)">
                 <ion-icon name="star" slot="icon-only"></ion-icon>
               </ion-item-option>

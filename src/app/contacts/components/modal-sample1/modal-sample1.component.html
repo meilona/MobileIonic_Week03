@@ -10,19 +10,45 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label position="floating">Nama</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <ion-list>
       <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input type="text"
+                   ngModel
+                   name="name"
+                   #nameCtrl="ngModel"
+                   required></ion-input>
+      </ion-item><ion-item>
+        <ion-label position="floating">imageUrl</ion-label>
+        <ion-input type="text"
+                   ngModel
+                   name="imageUrl"
+                   #imageUrlCtrl="ngModel"
+                   required></ion-input>
+      </ion-item>
       <ion-item>
-      <ion-label position="floating">Telepon</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="full" color="tertiary" (click)="onAdd()">SAVE CONTACT</ion-button>
+        <ion-label position="floating">E-mail (Sepparated by Commas)</ion-label>
+        <ion-input type="email"
+                   ngModel
+                   name="email"
+                   #emailCtrl="ngModel"
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Telepon (Sepparated by Commas)</ion-label>
+        <ion-input type="text"
+                   ngModel
+                   name="phoneNumber"
+                   #teleponCtrl="ngModel"
+                   required></ion-input>
+      </ion-item>
+<!--      <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched">-->
+<!--        <ion-label>Should be a valid phone number.</ion-label>-->
+<!--      </ion-item>-->
+    </ion-list>
+    <ion-button type="submit" expand="full" color="tertiary" [disabled]="!form.valid">
+      SAVE CONTACT
+    </ion-button>
+  </form>
 </ion-content>
